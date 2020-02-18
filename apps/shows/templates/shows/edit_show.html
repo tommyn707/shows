@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Show</title>
+    <!-- link for icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <div class="wrapper" style="width: 88%; margin: 5% auto; text-align: center;">
+        
+        <i class="medium material-icons" style="margin: 0px 0px;">live_tv</i>
+        <h1 style="display: inline-block; margin: 0; ">Edit Show # {{ show.id }}</h1>
+        <!-- Form to add new Shows -->
+        <form action="/submit_edit/{{ show.id }} " method="POST" class="col s12">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12">
+                    <input value={{ show.title }} type="text" name="title">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input value={{ show.network }} name="network" type="text">
+                </div>
+                <div class="input-field col s6">
+                    <!-- <label for="release_date">Release Date</label> -->
+                    <input value={{ date }} name="release_date" id="release_date" type="date">
+                    <label for="release_date"> Release Date </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input field col s12" style="text-align: left;">
+                    <label> <p>Description</p> </label>                    
+                    <textarea name="description" placeholder={{ show.description }} cols="30" rows="10"></textarea>
+                </div>
+            </div>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+    <a href="/display_show/{{ show.id }}" style="margin-left: 6%">Go to Show</a>
+</body>
+</html>
