@@ -45,5 +45,16 @@
         </form>
     </div>
     <a href="/display_show/{{ show.id }}">Go to Show</a>
+
+    {% if messages %}
+    <div class="container alert alert-danger" role="alert">
+        <ul class="messages">
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>Errors:</li>
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 </body>
 </html>
